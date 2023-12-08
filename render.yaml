@@ -8,7 +8,7 @@ services:
     name: server
     runtime: python
     buildCommand: "./server/build.sh"
-    startCommand: "gunicorn server.server.wsgi:application"
+    startCommand: "cd server && gunicorn server.wsgi:application"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
