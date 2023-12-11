@@ -129,7 +129,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS
-CORS_ORIGIN_ALLOW_ALL = [
+CORS_ALLOWED_ORIGINS = [
     'https://secretservertest.vercel.app/',
     'https://secretservertest.vercel.app'
 ]
