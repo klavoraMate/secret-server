@@ -6,13 +6,13 @@ authors = ["klavoraMate <klavoramate98@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 django = "3.2"
 djangorestframework = "^3.14.0"
 dj-database-url = "^2.1.0"
 psycopg2-binary = "^2.9.9"
 gunicorn = "^21.2.0"
-
+django-cors-headers = "^4.3.1"
 
 [build-system]
 requires = ["poetry-core"]
