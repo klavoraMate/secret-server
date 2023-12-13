@@ -1,5 +1,5 @@
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.parsers import FormParser
 from .models import Secret
 from .serializers import SecretSerializer, SecretCreateSerializer
@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 
 
 @api_view(['GET'])
+@renderer_classes([JSONRenderer, XMLRenderer])
 def get_secret(request, hash_value):
     try:
         secret = Secret.objects.get(hash=hash_value)
@@ -17,10 +18,8 @@ def get_secret(request, hash_value):
     return Response(serializer.data, status=200)
 
 
-get_secret.renderer_classes = [JSONRenderer, XMLRenderer]
-
-
 @api_view(['POST'])
+@renderer_classes([JSONRenderer, XMLRenderer])
 def create_secret(request):
     serializer = SecretCreateSerializer(data=request.data)
     if serializer.is_valid():
@@ -30,5 +29,3 @@ def create_secret(request):
     return Response({'message': 'Invalid input'}, status=405)
 
 
-create_secret.parser_classes = [FormParser]
-create_secret.renderer_classes = [JSONRenderer, XMLRenderer]
