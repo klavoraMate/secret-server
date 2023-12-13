@@ -31,3 +31,7 @@ class EncryptedField(models.TextField):
 
     def decrypt(self, cipher_text):
         return self.cipher_suite.decrypt(cipher_text.encode()).decode()
+<<<<<<< HEAD
+=======
+    
+>>>>>>> b3fd8e5d3a42cbce24ae57413a52e5621eebbb37
