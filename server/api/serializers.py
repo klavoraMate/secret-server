@@ -16,12 +16,8 @@ class SecretCreateSerializer(serializers.Serializer):
     expireAfter = serializers.IntegerField(write_only=True)
 
     def create(self, validated_data):
-        secretText = validated_data.pop('secret')
-        remainingViews = validated_data.pop('expireAfterViews')
-        createdAt = datetime.now()
-        expiresAt = createdAt + timedelta(minutes=validated_data.pop('expireAfter'))
-
-        hash_input = secretText + str(remainingViews) + str(expiresAt) + str(createdAt)
-        hash_value = hashlib.sha256(hash_input.encode()).hexdigest()
-        return Secret.objects.create(secretText=secretText, remainingViews=remainingViews, expiresAt=expiresAt,
-                                     createdAt=createdAt, hash=hash_value)
+        return Secret.create_secret(
+            secret=validated_data.pop('secret'),
+            expireAfterViews=validated_data.pop('expireAfterViews'),
+            expireAfter=validated_data.pop('expireAfter')
+        )
