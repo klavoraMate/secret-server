@@ -1,10 +1,8 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, renderer_classes
-from rest_framework.parsers import FormParser
 from .models import Secret
 from .serializers import SecretSerializer, SecretCreateSerializer
 from .renderers import JSONRenderer, XMLRenderer
-from datetime import datetime, timedelta
 
 
 @api_view(['GET'])
