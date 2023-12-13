@@ -12,7 +12,9 @@ class XMLRenderer(BaseRenderer):
             child = Element(key)
             child.text = str(value)
             root.append(child)
-        return tostring(root, encoding='unicode')
+        xml_str = tostring(root, encoding='unicode')
+        xml_str = '<?xml version="1.0" encoding="UTF-8"?>\n' + xml_str
+        return xml_str
 
 
 class JSONRenderer(JSONRenderer):
