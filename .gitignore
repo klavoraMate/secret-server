@@ -2,5 +2,6 @@
 /server/.idea
 /server/server/__pycache__
 /server/api/__pycache__
+/server/api/migrations/__pycache__
 /frontend/node_modules
 /frontend/.idea
