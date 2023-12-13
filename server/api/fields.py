@@ -9,7 +9,7 @@ class EncryptedField(models.TextField):
         self.cipher_suite = Fernet(key)
         super().__init__(*args, **kwargs)
 
-    def from_db_value(self, value):
+    def from_db_value(self, value, expression, connection):
         if value is not None:
             return self.decrypt(value)
         return value
