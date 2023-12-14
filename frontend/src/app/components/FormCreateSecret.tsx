@@ -8,8 +8,7 @@ export default function FormCreateSecret() {
     const [views, setViews] = useState<string>('');
     const [time, setTime] = useState<string>('');
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    const handleSubmit = () => {
         const formData = new URLSearchParams();
         formData.append('secret', secret);
         formData.append('expireAfterViews', views);
@@ -25,21 +24,18 @@ export default function FormCreateSecret() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <FormControl>
-                    <FormHelperText id='secret-helper-text'>Enter your secret</FormHelperText>
-                    <TextField id='secret' label='Secret' aria-describedby='secret-helper-text' multiline value={secret}
-                               onChange={(e) => setSecret(e.target.value)}/>
-                    <FormHelperText id='views-helper-text'>Enter number of views</FormHelperText>
-                    <TextField id='views' label='Views' aria-describedby='views-helper-text' type='number' value={views}
-                               onChange={(e) => setViews(e.target.value)}/>
-                    <FormHelperText id='time-helper-text'>Enter time in minutes</FormHelperText>
-                    <TextField id='time' label='Time' aria-describedby='time-helper-text' type='number' value={time}
-                               onChange={(e) => setTime(e.target.value)}/>
-                    <Button type="submit">Submit</Button>
-                </FormControl>
-
-            </form>
+            <FormControl>
+                <FormHelperText id='secret-helper-text'>Enter your secret</FormHelperText>
+                <TextField id='secret' label='Secret' aria-describedby='secret-helper-text' multiline value={secret}
+                           onChange={(e) => setSecret(e.target.value)}/>
+                <FormHelperText id='views-helper-text'>Enter number of views</FormHelperText>
+                <TextField id='views' label='Views' aria-describedby='views-helper-text' type='number' value={views}
+                           onChange={(e) => setViews(e.target.value)}/>
+                <FormHelperText id='time-helper-text'>Enter time in minutes</FormHelperText>
+                <TextField id='time' label='Time' aria-describedby='time-helper-text' type='number' value={time}
+                           onChange={(e) => setTime(e.target.value)}/>
+                <Button onClick={handleSubmit}>Submit</Button>
+            </FormControl>
         </div>
     );
 }
