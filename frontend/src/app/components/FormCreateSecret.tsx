@@ -13,7 +13,7 @@ export default function FormCreateSecret() {
         formData.append('secret', secret);
         formData.append('expireAfterViews', views);
         formData.append('expireAfter', time);
-        fetch('https://server-k1y7.onrender.com/v1/secret', {
+        fetch('https://server-k1y7.onrender.com/v1/secret/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
