@@ -15,7 +15,7 @@
         },
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://server-k1y7.onrender.com/v1/secret"
+          "value": "https://server-k1y7.onrender.com"
         },
         {
           "key": "Access-Control-Allow-Methods",
