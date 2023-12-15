@@ -18,8 +18,8 @@ export default function FormFindSecret({setData, setError}: FormFindSecretProps)
     const fetchData = async () => {
         try {
             setLoading(true);
-            const resJson = await fetch('/v1/secret' + hash, {headers: {Accept: 'application/json'}});
-            const resXml = await fetch('/v1/secret' + hash, {headers: {Accept: 'application/xml'}});
+            const resJson = await fetch('/v1/secret/' + hash, {headers: {Accept: 'application/json'}});
+            const resXml = await fetch('/v1/secret/' + hash, {headers: {Accept: 'application/xml'}});
 
             if (resJson.status === 404 || resXml.status === 404) {
                 const dataJson = await resJson.json();
