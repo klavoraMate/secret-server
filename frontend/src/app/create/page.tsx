@@ -15,6 +15,7 @@ export default function Create() {
     const [open, setOpen] = useState(false);
     const [response, setResponse] = useState('');
     const [isError, setIsError] = useState(false);
+    const [isCopied, setIsCopied] = useState(false);
     const classes = useStyle();
 
     const handleResponse = (response: string, error = false) => {
@@ -29,6 +30,7 @@ export default function Create() {
 
     const handleCopy = () => {
         navigator.clipboard.writeText(response);
+        setIsCopied(true);
     }
 
     return (
@@ -46,7 +48,10 @@ export default function Create() {
                                        inputProps={{className: classes.input}}/>
                             </Grid>
                             <Grid item xs={4}>
-                                <img src="/copied_icon.svg" alt="Copy" onClick={handleCopy} className={classes.image}/>
+                                {!isCopied ?
+                                    (<img src="/copy.svg" alt="Copy" onClick={handleCopy} className={classes.image}/>) :
+                                    (<img src="/check.png" alt="Copied" className={classes.image}/>)
+                                }
                             </Grid>
                         </Grid>
                     )}
@@ -67,6 +72,6 @@ const useStyle = makeStyles({
     image: {
         marginTop: '0.5rem',
         cursor: 'pointer',
-        width: '40%',
+        width: '30px',
     }
 });
