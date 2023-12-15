@@ -11,6 +11,7 @@ interface FormContainerProps {
 }
 
 export default function FormContainer({logoSrc, logoAlt, logoTitle, children}: FormContainerProps) {
+
     const classes = useStyle();
     return (
         <Grid container spacing={2}>

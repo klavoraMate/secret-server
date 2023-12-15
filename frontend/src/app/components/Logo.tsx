@@ -8,14 +8,16 @@ interface LogoProps {
     src: string;
     alt: string;
 }
-export default function Logo ({title,src, alt}: LogoProps) {
+
+export default function Logo({title, src, alt}: LogoProps) {
+
     const classes = useStyle();
 
-    return(
+    return (
         <div>
             <Box style={{
-                display:'flex',
-                justifyContent:'space-around',
+                display: 'flex',
+                justifyContent: 'space-around',
             }}>
                 <img
                     src={src}
@@ -23,7 +25,7 @@ export default function Logo ({title,src, alt}: LogoProps) {
                     width='200'
                 />
             </Box>
-            <Typography variant='h4' component='h1' className={classes.title} >
+            <Typography variant='h4' component='h1' className={classes.title}>
                 {title}
             </Typography>
         </div>
