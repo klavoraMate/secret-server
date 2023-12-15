@@ -18,7 +18,7 @@ export default function FormFindSecret() {
                                     onChange={(e) => setHash(e.target.value)} helperText={'Enter hash'}/>
                 </Grid>
                 <Grid item xs={12} container justifyContent='right'>
-                    <FormButton text={'Find'} onClick={handleSubmit}/>
+                    <FormButton disabled={false} text={'Find'} onClick={handleSubmit}/>
                 </Grid>
             </FormContainer>
         </div>
