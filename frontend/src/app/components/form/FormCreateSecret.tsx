@@ -1,0 +1,49 @@
+'use client';
+import {FormControl, Grid, Paper, Typography} from "@mui/material";
+import {useState} from "react";
+import FormInputField from "@/app/components/form/FormInputField";
+import FormButton from "@/app/components/form/FormButton";
+import FormContainer from "@/app/components/form/FormContainer";
+
+export default function FormCreateSecret() {
+    const [secret, setSecret] = useState<string>('');
+    const [views, setViews] = useState<string>('');
+    const [time, setTime] = useState<string>('');
+
+    const handleSubmit = () => {
+        const formData = new URLSearchParams();
+        formData.append('secret', secret);
+        formData.append('expireAfterViews', views);
+        formData.append('expireAfter', time);
+        fetch('/v1/secret', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData.toString(),
+        }).then(response => response.json())
+    }
+
+    return (
+        <div>
+            <FormContainer>
+                <Grid item xs={12}>
+                    <FormInputField id={'secret'} type={'text'} value={secret}
+                                    onChange={(e) => setSecret(e.target.value)} helperText={'Enter secret'}/>
+                </Grid>
+                <Grid item xs={12}>
+                    <FormInputField id={'views'} type={'number'} value={views}
+                                    onChange={(e) => setViews(e.target.value)} helperText={'Views amount'}/>
+                </Grid>
+                <Grid item xs={12}>
+                    <FormInputField id={'time'} type={'number'} value={time}
+                                    onChange={(e) => setTime(e.target.value)} helperText={'Time amount'}/>
+                </Grid>
+                <Grid item xs={12} container justifyContent='right'>
+                    <FormButton text={'Send'} onClick={handleSubmit}/>
+                </Grid>
+            </FormContainer>
+        </div>
+    );
+}
+
