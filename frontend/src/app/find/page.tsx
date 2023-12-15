@@ -1,7 +1,9 @@
+import FormFindSecret from "@/app/components/form/FormFindSecret";
+
 export default function Find() {
     return (
         <div>
-            <h1>Find</h1>
+            <FormFindSecret />
         </div>
     );
 }
