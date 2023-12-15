@@ -4,6 +4,7 @@ import {Dialog, Tab, Tabs, Box, Typography} from '@mui/material';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 import {solarizedlight} from 'react-syntax-highlighter/dist/esm/styles/prism';
 import FormFindSecret from '@/app/components/form/FormFindSecret';
+import DialogContainer from "@/app/components/dialog/DialogContainer";
 
 interface DataProps {
     json: {
@@ -17,6 +18,7 @@ interface DataProps {
 }
 
 export default function Find() {
+    const [open, setOpen] = useState(false);
     const [data, setData] = useState<DataProps>({} as DataProps);
     const [error, setError] = useState<string | null>(null);
     const [tabValue, setTabValue] = useState<number>(0);
@@ -25,13 +27,16 @@ export default function Find() {
         setTabValue(newValue);
     };
 
+    const handleClose = () => {
+        setOpen(false);
+        setData({} as DataProps);
+        setError(null);
+    }
+
     return (
         <div>
             <FormFindSecret setData={setData} setError={setError}/>
-            <Dialog open={Boolean(data || error)} onClose={() => {
-                setData({} as DataProps);
-                setError(null);
-            }}>
+            <DialogContainer open={open} onClose={handleClose} title={error?'Error':'Your secret is:'}>
                 {error && (
                     <Typography variant="h6" color="error">{error}</Typography>
                 )}
@@ -59,7 +64,7 @@ export default function Find() {
                             </SyntaxHighlighter>
                         </TabPanel></>
                 )}
-            </Dialog>
+            </DialogContainer>
         </div>
     );
 }

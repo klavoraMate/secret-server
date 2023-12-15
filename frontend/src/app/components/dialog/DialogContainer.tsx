@@ -1,4 +1,4 @@
-import {Dialog, DialogTitle} from "@mui/material";
+import {Button, Dialog, DialogActions, DialogTitle} from "@mui/material";
 import {makeStyles} from "@mui/styles";
 
 interface DialogContainerProps {
@@ -15,6 +15,9 @@ export default function DialogContainer({open, onClose, title, children}: Dialog
             <Dialog open={open} onClose={onClose} className={classes.root}>
                 <DialogTitle>{title}</DialogTitle>
                     {children}
+                <DialogActions>
+                    <Button onClick={onClose}>Close</Button>
+                </DialogActions>
             </Dialog>
         </div>
     );

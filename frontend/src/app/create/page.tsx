@@ -56,9 +56,6 @@ export default function Create() {
                         </Grid>
                     )}
                 </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Close</Button>
-                </DialogActions>
             </DialogContainer>
         </div>
     );
