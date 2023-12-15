@@ -26,7 +26,12 @@ export default function FormCreateSecret({onResponse}: { onResponse: (hash: stri
         }).then(response => {
             response.json()
                 .then(data => {
-                    onResponse(data.hash);
+                    if (data.hash){
+                        onResponse(data.hash);
+                    }
+                    else {
+                        onResponse(data.message, true);
+                    }
                     setLoading(false);
                 })
         })
