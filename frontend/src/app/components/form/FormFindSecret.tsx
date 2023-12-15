@@ -6,12 +6,7 @@ import {useState} from "react";
 import FormButton from "@/app/components/form/FormButton";
 
 
-interface FormFindSecretProps {
-    setData: (data: any) => void;
-    setError: (error: string | null) => void;
-}
-
-export default function FormFindSecret({setData, setError}: FormFindSecretProps) {
+export default function FormFindSecret({onResponse}: { onResponse: (data: any, error?: string | null) => void }) {
     const [hash, setHash] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -23,16 +18,17 @@ export default function FormFindSecret({setData, setError}: FormFindSecretProps)
 
             if (resJson.status === 404 || resXml.status === 404) {
                 const dataJson = await resJson.json();
-                setError(dataJson.message);
+                onResponse({json: {}, xml: ''}, dataJson.message);
                 setLoading(false);
             } else {
                 const dataJson = await resJson.json();
                 const dataXml = await resXml.text();
-                setData({json: dataJson, xml: dataXml});
+                onResponse({json: dataJson, xml: dataXml}, null);
                 setLoading(false);
             }
         } catch (error: any) {
-            setError(error.message);
+            onResponse({json: {}, xml: ''}, error.message);
+            setLoading(false);
         }
     };
     return (

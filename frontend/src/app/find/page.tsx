@@ -33,10 +33,16 @@ export default function Find() {
         setError(null);
     }
 
+    const handleResponse = (data: DataProps, error: string | null = null) => {
+        setData(data);
+        setError(error);
+        setOpen(true);
+    }
+
     return (
         <div>
-            <FormFindSecret setData={setData} setError={setError}/>
-            <DialogContainer open={open} onClose={handleClose} title={error?'Error':'Your secret is:'}>
+            <FormFindSecret onResponse={handleResponse}/>
+            <DialogContainer open={open} onClose={handleClose} title={error ? 'Error' : 'Your secret is:'}>
                 {error && (
                     <Typography variant="h6" color="error">{error}</Typography>
                 )}
