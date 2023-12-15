@@ -5,7 +5,7 @@ import FormInputField from "@/app/components/form/FormInputField";
 import FormButton from "@/app/components/form/FormButton";
 import FormContainer from "@/app/components/form/FormContainer";
 
-export default function FormCreateSecret() {
+export default function FormCreateSecret({onResponse}: { onResponse: (hash: string, error?: boolean) => void }) {
     const [secret, setSecret] = useState<string>('');
     const [views, setViews] = useState<string>('');
     const [time, setTime] = useState<string>('');
@@ -22,6 +22,8 @@ export default function FormCreateSecret() {
             },
             body: formData.toString(),
         }).then(response => response.json())
+            .then(data => onResponse(data.hash))
+            .catch(error => onResponse(`Error: ${error.message}`, true));
     }
 
     return (
