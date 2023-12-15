@@ -4,13 +4,14 @@ import Button from "@mui/material/Button";
 interface FormButtonProps {
     text: string;
     onClick: () => void;
+    disabled: boolean;
 }
 
-export default function FormButton({text, onClick}: FormButtonProps) {
+export default function FormButton({text, onClick, disabled}: FormButtonProps) {
     const classes = useStyle();
     return (
         <div>
-            <Button onClick={onClick} className={classes.button}>
+            <Button onClick={onClick} className={classes.button} disabled={disabled}>
                 {text}
             </Button>
         </div>

@@ -9,8 +9,10 @@ export default function FormCreateSecret({onResponse}: { onResponse: (hash: stri
     const [secret, setSecret] = useState<string>('');
     const [views, setViews] = useState<string>('');
     const [time, setTime] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
 
     const handleSubmit = () => {
+        setLoading(true);
         const formData = new URLSearchParams();
         formData.append('secret', secret);
         formData.append('expireAfterViews', views);
@@ -21,9 +23,17 @@ export default function FormCreateSecret({onResponse}: { onResponse: (hash: stri
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: formData.toString(),
-        }).then(response => response.json())
-            .then(data => onResponse(data.hash))
-            .catch(error => onResponse(`Error: ${error.message}`, true));
+        }).then(response => {
+            response.json()
+                .then(data => {
+                    onResponse(data.hash);
+                    setLoading(false);
+                })
+        })
+            .catch(error => {
+                onResponse(`Error: ${error.message}`, true);
+                setLoading(false);
+            });
     }
 
     return (
@@ -42,7 +52,7 @@ export default function FormCreateSecret({onResponse}: { onResponse: (hash: stri
                                     onChange={(e) => setTime(e.target.value)} helperText={'Time amount'}/>
                 </Grid>
                 <Grid item xs={12} container justifyContent='right'>
-                    <FormButton text={'Send'} onClick={handleSubmit}/>
+                    <FormButton disabled={loading} text={loading ? 'Sending ...' : 'Send'} onClick={handleSubmit}/>
                 </Grid>
             </FormContainer>
         </div>
