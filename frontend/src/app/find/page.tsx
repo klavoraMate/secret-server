@@ -46,7 +46,7 @@ export default function Find() {
                 {error && (
                     <Typography variant="h6" color="error">{error}</Typography>
                 )}
-                {data.json && (<>
+                {data.json.hash && (<>
                         <Tabs value={tabValue} onChange={handleTabChange}>
                             <Tab label="Normal"/>
                             <Tab label="JSON"/>

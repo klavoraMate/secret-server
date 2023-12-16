@@ -9,6 +9,7 @@ import FormButton from "@/app/components/form/FormButton";
 export default function FormFindSecret({onResponse}: { onResponse: (data: any, error?: string | null) => void }) {
     const [hash, setHash] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
+    const formContainerKey = Math.random();
 
     const fetchData = async () => {
         try {
@@ -33,7 +34,7 @@ export default function FormFindSecret({onResponse}: { onResponse: (data: any, e
     };
     return (
         <div>
-            <FormContainer logoSrc={'/logo_form_find.png'} logoAlt={'find logo'} logoTitle={'Find secret text!'}>
+            <FormContainer key={formContainerKey} logoSrc={'/logo_form_find.png'} logoAlt={'find logo'} logoTitle={'Find secret text!'}>
                 <Grid item xs={12}>
                     <FormInputField id={'hash'} type={'text'} value={hash}
                                     onChange={(e) => setHash(e.target.value)} helperText={'Enter hash'}/>
