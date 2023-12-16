@@ -1,6 +1,6 @@
 'use client';
 import {useState} from 'react';
-import {Dialog, Tab, Tabs, Box, Typography} from '@mui/material';
+import {Dialog, Tab, Tabs, Box, Typography, InputLabel, TextField} from '@mui/material';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 import {solarizedlight} from 'react-syntax-highlighter/dist/esm/styles/prism';
 import FormFindSecret from '@/app/components/form/FormFindSecret';
@@ -53,11 +53,20 @@ export default function Find() {
                             <Tab label="XML"/>
                         </Tabs>
                         <TabPanel value={tabValue} index={0}>
-                            <Typography>Hash: {data.json.hash}</Typography>
-                            <Typography>Secret Text: {data.json.secretText}</Typography>
-                            <Typography>Created At: {data.json.createdAt}</Typography>
-                            <Typography>Expires At: {data.json.expiresAt}</Typography>
-                            <Typography>Remaining Views: {data.json.remainingViews}</Typography>
+                            <InputLabel htmlFor="hash">Hash</InputLabel>
+                            <TextField id="hash" value={data.json.hash} InputProps={{readOnly: true}} variant="outlined" fullWidth />
+
+                            <InputLabel htmlFor="secretText">Secret Text</InputLabel>
+                            <TextField id="secretText" value={data.json.secretText} InputProps={{readOnly: true}} variant="outlined" fullWidth />
+
+                            <InputLabel htmlFor="createdAt">Created At</InputLabel>
+                            <TextField id="createdAt" value={data.json.createdAt} InputProps={{readOnly: true}} variant="outlined" fullWidth />
+
+                            <InputLabel htmlFor="expiresAt">Expires At</InputLabel>
+                            <TextField id="expiresAt" value={data.json.expiresAt} InputProps={{readOnly: true}} variant="outlined" fullWidth />
+
+                            <InputLabel htmlFor="remainingViews">Remaining Views</InputLabel>
+                            <TextField id="remainingViews" value={data.json.remainingViews} InputProps={{readOnly: true}} variant="outlined" fullWidth />
                         </TabPanel>
                         <TabPanel value={tabValue} index={1}>
                             <SyntaxHighlighter language="json" style={solarizedlight}>
