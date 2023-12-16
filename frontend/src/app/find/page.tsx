@@ -1,6 +1,6 @@
 'use client';
 import {useState} from 'react';
-import {Dialog, Tab, Tabs, Box, Typography, InputLabel, TextField} from '@mui/material';
+import {Dialog, Tab, Tabs, Box, Typography, InputLabel, TextField, Grid} from '@mui/material';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 import {solarizedlight} from 'react-syntax-highlighter/dist/esm/styles/prism';
 import FormFindSecret from '@/app/components/form/FormFindSecret';
@@ -53,20 +53,32 @@ export default function Find() {
                             <Tab label="XML"/>
                         </Tabs>
                         <TabPanel value={tabValue} index={0}>
-                            <InputLabel htmlFor="hash">Hash</InputLabel>
-                            <TextField id="hash" value={data.json.hash} InputProps={{readOnly: true}} variant="outlined" fullWidth />
+                            <Grid container direction="column">
+                                <Grid item container direction="row" alignItems="center">
+                                    <Grid item xs={4}><InputLabel htmlFor="hash">Hash</InputLabel></Grid>
+                                    <Grid item xs={8}><TextField id="hash" value={data.json.hash} InputProps={{readOnly: true}} variant="outlined" fullWidth /></Grid>
+                                </Grid>
 
-                            <InputLabel htmlFor="secretText">Secret Text</InputLabel>
-                            <TextField id="secretText" value={data.json.secretText} InputProps={{readOnly: true}} variant="outlined" fullWidth />
+                                <Grid item container direction="row" alignItems="center">
+                                    <Grid item xs={4}><InputLabel htmlFor="secretText">Secret Text</InputLabel></Grid>
+                                    <Grid item xs={8}><TextField id="secretText" value={data.json.secretText} InputProps={{readOnly: true}} variant="outlined" fullWidth /></Grid>
+                                </Grid>
 
-                            <InputLabel htmlFor="createdAt">Created At</InputLabel>
-                            <TextField id="createdAt" value={data.json.createdAt} InputProps={{readOnly: true}} variant="outlined" fullWidth />
+                                <Grid item container direction="row" alignItems="center">
+                                    <Grid item xs={4}><InputLabel htmlFor="createdAt">Created At</InputLabel></Grid>
+                                    <Grid item xs={8}><TextField id="createdAt" value={data.json.createdAt} InputProps={{readOnly: true}} variant="outlined" fullWidth /></Grid>
+                                </Grid>
 
-                            <InputLabel htmlFor="expiresAt">Expires At</InputLabel>
-                            <TextField id="expiresAt" value={data.json.expiresAt} InputProps={{readOnly: true}} variant="outlined" fullWidth />
+                                <Grid item container direction="row" alignItems="center">
+                                    <Grid item xs={4}><InputLabel htmlFor="expiresAt">Expires At</InputLabel></Grid>
+                                    <Grid item xs={8}><TextField id="expiresAt" value={data.json.expiresAt} InputProps={{readOnly: true}} variant="outlined" fullWidth /></Grid>
+                                </Grid>
 
-                            <InputLabel htmlFor="remainingViews">Remaining Views</InputLabel>
-                            <TextField id="remainingViews" value={data.json.remainingViews} InputProps={{readOnly: true}} variant="outlined" fullWidth />
+                                <Grid item container direction="row" alignItems="center">
+                                    <Grid item xs={4}><InputLabel htmlFor="remainingViews">Remaining Views</InputLabel></Grid>
+                                    <Grid item xs={8}><TextField id="remainingViews" value={data.json.remainingViews} InputProps={{readOnly: true}} variant="outlined" fullWidth /></Grid>
+                                </Grid>
+                            </Grid>
                         </TabPanel>
                         <TabPanel value={tabValue} index={1}>
                             <SyntaxHighlighter language="json" style={solarizedlight}>
