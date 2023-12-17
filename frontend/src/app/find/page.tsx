@@ -28,7 +28,7 @@ export default function Find() {
 
     return (
         <div>
-            <FormFindSecret setJsonData={setJsonData} setXmlData={setXmlData} setError={setError} onResponse={handleResponse}/>
+            <FormFindSecret setJsonData={setJsonData} setXmlData={setXmlData} setError={setError} setOpen={setOpen}/>
             <DialogContainer open={open} onClose={handleClose} title={error ? 'Error' : 'Your secret is:'}>
                 {error && (
                     <Typography variant="h6" color="error">{error}</Typography>

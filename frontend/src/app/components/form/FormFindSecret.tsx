@@ -9,38 +9,35 @@ interface FormFindSecretProps {
     setJsonData: (data: JsonResponse) => void;
     setXmlData: (data: string) => void;
     setError: (error: string | null) => void;
-    onResponse: () => void;
+    setOpen: (open: boolean) => void;
 }
 
-export default function FormFindSecret({setJsonData, setXmlData, setError,onResponse}: FormFindSecretProps) {
+export default function FormFindSecret({setJsonData, setXmlData, setError, setOpen}: FormFindSecretProps) {
     const [hash, setHash] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
     const [format, setFormat] = useState<string>('application/json');
 
     const fetchData = async () => {
+        setLoading(true);
         try {
-            setLoading(true);
             const res = await fetch('/v1/secret/' + hash, {headers: {Accept: format}});
 
             if (res.status === 404) {
                 const data = await res.json();
                 setError(data.message);
-                setLoading(false);
-            } else if (res.status === 410){
+            } else if (res.status === 410) {
                 setError('Secret has been expired!');
-                setLoading(false);
-            }
-            else {
-                if(format === 'application/json')
+            } else {
+                if (format === 'application/json')
                     setJsonData(await res.json());
                 else
                     setXmlData(await res.text());
-                setLoading(false);
             }
         } catch (error: any) {
             setError(error.message);
-            setLoading(false);
         }
+        setOpen(true);
+        setLoading(false);
     };
 
     return (
