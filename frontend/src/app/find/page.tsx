@@ -25,8 +25,10 @@ export default function Find() {
     const handleResponse = (data: JsonResponse | string, error: string | null = null) => {
         if (typeof data === 'string') {
             setXmlData(data);
+            setJsonData({} as JsonResponse);
         } else {
             setJsonData(data);
+            setXmlData('');
         }
         setError(error);
         setOpen(true);
@@ -39,7 +41,7 @@ export default function Find() {
                 {error && (
                     <Typography variant="h6" color="error">{error}</Typography>
                 )}
-                {jsonData && (
+                {Object.keys(jsonData).length !== 0 && (
                     <SyntaxHighlighter language="json" style={solarizedlight}>
                         {JSON.stringify(jsonData, null, 2)}
                     </SyntaxHighlighter>
