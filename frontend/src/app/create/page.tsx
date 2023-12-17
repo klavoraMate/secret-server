@@ -9,14 +9,12 @@ import {
 } from "@mui/material";
 import FormCreateSecret from "@/app/components/form/FormCreateSecret";
 import DialogContainer from "@/app/components/dialog/DialogContainer";
-import {makeStyles} from "@mui/styles";
 
 export default function Create() {
     const [open, setOpen] = useState(false);
     const [response, setResponse] = useState('');
     const [isError, setIsError] = useState(false);
     const [isCopied, setIsCopied] = useState(false);
-    const classes = useStyle();
 
     const handleResponse = (response: string, error = false) => {
         setResponse(response);
@@ -44,13 +42,12 @@ export default function Create() {
                     {!isError && (
                         <Grid container alignItems="center" spacing={1}>
                             <Grid item xs={8}>
-                                <Input value={response} readOnly
-                                       inputProps={{className: classes.input}}/>
+                                <Input value={response} fullWidth={true} readOnly/>
                             </Grid>
                             <Grid item xs={4}>
                                 {!isCopied ?
-                                    (<img src="/copy.svg" alt="Copy" onClick={handleCopy} className={classes.image}/>) :
-                                    (<img src="/check.png" alt="Copied" className={classes.image}/>)
+                                    (<img src="/copy.svg" alt="Copy" style={imageStyles} onClick={handleCopy}/>) :
+                                    (<img src="/check.png" alt="Copied" style={imageStyles} onClick={handleCopy}/>)
                                 }
                             </Grid>
                         </Grid>
@@ -61,14 +58,8 @@ export default function Create() {
     );
 }
 
-const useStyle = makeStyles({
-    input: {
-        textAlign: 'center',
-        width: '100%',
-    },
-    image: {
-        marginTop: '0.5rem',
-        cursor: 'pointer',
-        width: '30px',
-    }
-});
+const imageStyles = {
+    marginTop: '0.5rem',
+    cursor: 'pointer',
+    width: '30px',
+}

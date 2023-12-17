@@ -1,7 +1,6 @@
 'use client';
 import Button from "@mui/material/Button";
 import {useRouter} from "next/navigation";
-import {makeStyles} from "@mui/styles";
 
 interface NavigationButtonProps {
     text: string;
@@ -10,17 +9,15 @@ interface NavigationButtonProps {
 
 export default function NavigationButton({text, link}: NavigationButtonProps) {
     const router = useRouter();
-    const classes = useStyle();
 
     return (
-        <Button variant='outlined' onClick={() => router.push(link)} className={classes.button}>
+        <Button variant='outlined' onClick={() => router.push(link)} sx={buttonStyles}>
             {text}
         </Button>
     );
 }
 
-const useStyle = makeStyles({
-    button: {
+    const buttonStyles= {
         fontSize: '1.5rem',
         color: 'white',
         margin: '0 0.5rem',
@@ -32,4 +29,3 @@ const useStyle = makeStyles({
             color: 'black',
         },
     }
-});

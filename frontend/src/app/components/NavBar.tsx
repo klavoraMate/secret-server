@@ -2,14 +2,12 @@
 import {Box} from "@mui/system";
 import {AppBar, Toolbar} from "@mui/material";
 import NavigationButton from "@/app/components/NavigationButton";
-import {makeStyles} from "@mui/styles";
 
 export default function NavBar() {
-    const classes = useStyle();
     return (
-        <Box sx={{flexGrow: 1}}>
+        <Box sx={boxStyles}>
             <AppBar position="static">
-                <Toolbar className={classes.toolbar}>
+                <Toolbar sx={toolbarStyles}>
                     <Box sx={{flexGrow: 1}}>
                         <NavigationButton text={"Find"} link={"/find"}/>
                         <NavigationButton text={"Create"} link={"/create"}/>
@@ -19,9 +17,10 @@ export default function NavBar() {
         </Box>
     )
 }
+const boxStyles = {
+    flexGrow: 1,
+}
 
-const useStyle = makeStyles({
-    toolbar: {
-        background: 'linear-gradient(45deg, #D12694 30%, #F68B2B 90%)',
-    }
-});
+const toolbarStyles = {
+    background: 'linear-gradient(45deg, #D12694 30%, #F68B2B 90%)',
+}
