@@ -1,5 +1,5 @@
 import {FormHelperText, TextField} from "@mui/material";
-import {makeStyles} from "@mui/styles";
+import {styled} from "@mui/system";
 
 interface FormInputFieldProps {
     id: string;
@@ -9,53 +9,66 @@ interface FormInputFieldProps {
     helperText: string;
 }
 
+const TextFieldStyled = styled(TextField)({
+    '& .MuiInputBase-root': {
+        color: 'white',
+        fontFamily: 'monospace',
+        fontSize: '1rem',
+        border: '2px solid gray',
+        borderRadius: '2rem',
+        padding: '0.5rem',
+    },
+    '& .MuiInputBase-root:hover': {
+        borderColor: 'pink !important',
+    },
+    '& .Mui-focused': {
+        color: 'white',
+        fontWeight: 'bold',
+        fontFamily: 'monospace',
+    },
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+            borderColor: 'gray',
+        },
+        '&:hover fieldset': {
+            borderColor: 'pink',
+        },
+        '&.Mui-focused fieldset': {
+            borderColor: 'pink',
+        },
+    },
+});
+
+
 export default function FormInputField({id, type, value, onChange, helperText}: FormInputFieldProps) {
-    const classes = useStyle();
 
     return (
         <div>
             <FormHelperText
                 id={`${id}-helper-text`}
-                className={classes.helper_text}
+                sx={helperTextStyles}
             >
                 {helperText}
             </FormHelperText>
-            <TextField
+            <TextFieldStyled
                 id={id}
                 aria-describedby={`${id}-helper-text`}
                 type={type}
                 value={value}
                 onChange={onChange}
-
-                InputProps={{
-                    className: classes.input_field,
-                    classes: {
-                        notchedOutline: classes.input_field_focused,
-                        focused: classes.input_field_focused,
-                    },
-                }}
+                variant={'outlined'}
             />
         </div>
     );
 
 }
 
-const useStyle = makeStyles({
-    helper_text: {
-        fontSize: '1.2rem',
-        marginBottom: '0.5rem',
-        marginTop: '0.5rem',
-        color: 'white',
-        fontFamily: 'monospace',
-    },
-    input_field: {
-        fontSize: '1rem',
-        color: 'black',
-        border: '2px solid gray',
-        borderRadius: '2rem',
-        padding: '0.5rem',
-    },
-    input_field_focused: {
-        borderColor: 'pink !important',
-    },
-});
+const helperTextStyles = {
+    fontSize: '1.2rem',
+    marginBottom: '0.5rem',
+    marginTop: '0.5rem',
+    color: 'white',
+    fontFamily: 'monospace',
+}
+
+

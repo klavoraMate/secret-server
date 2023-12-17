@@ -11,7 +11,7 @@ interface FormContainerProps {
 
 export default function FormContainer({logoSrc, logoAlt, logoTitle, children}: FormContainerProps) {
     return (
-        <Grid container spacing={2} sx={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', flexDirection: 'row'}}>
+        <Grid container spacing={2} sx={gridStyles}>
             <Hidden mdDown>
                 <Grid item md={6}>
                     <Logo src={logoSrc} title={logoTitle} alt={logoAlt}/>
@@ -26,7 +26,7 @@ export default function FormContainer({logoSrc, logoAlt, logoTitle, children}: F
                         justifyContent='center'
                         minHeight='70vh'
                     >
-                        <Paper elevation={3} sx={{padding: '2rem', margin: '2rem', backgroundColor: 'rgba(157, 134, 219, 0.1)'}}>
+                        <Paper elevation={3} sx={paperStyles}>
                             <FormControl>
                                 <Grid container spacing={2}>
                                     {children}
@@ -38,4 +38,18 @@ export default function FormContainer({logoSrc, logoAlt, logoTitle, children}: F
             </Grid>
         </Grid>
     );
+}
+
+const gridStyles = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    flexDirection: 'row',
+};
+
+const paperStyles = {
+    padding: '2rem',
+    margin: '2rem',
+    backgroundColor: 'rgba(157, 134, 219, 0.1)',
 }

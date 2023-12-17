@@ -1,5 +1,4 @@
 import {Button, Dialog, DialogActions, DialogTitle} from "@mui/material";
-import {makeStyles} from "@mui/styles";
 
 interface DialogContainerProps {
     open: boolean;
@@ -7,14 +6,14 @@ interface DialogContainerProps {
     title: string;
     children: React.ReactNode;
 }
-export default function DialogContainer({open, onClose, title, children}: DialogContainerProps){
-    const classes = useStyle();
+
+export default function DialogContainer({open, onClose, title, children}: DialogContainerProps) {
 
     return (
         <div>
-            <Dialog open={open} onClose={onClose} className={classes.root}>
+            <Dialog open={open} onClose={onClose} sx={dialogStyles}>
                 <DialogTitle>{title}</DialogTitle>
-                    {children}
+                {children}
                 <DialogActions>
                     <Button onClick={onClose}>Close</Button>
                 </DialogActions>
@@ -22,45 +21,44 @@ export default function DialogContainer({open, onClose, title, children}: Dialog
         </div>
     );
 }
-const useStyle = makeStyles({
-    root: {
-        '& .MuiDialog-paper': {
-            backgroundColor: 'rgb(244, 133, 49)',
-            color: 'white',
-            borderRadius: '2rem',
-            padding: '2rem',
-            border: '2px solid white',
-            '& .MuiDialogTitle-root': {
-                fontSize: '2rem',
-                textAlign: 'center',
-                '& .MuiTypography-root': {
-                    fontFamily: 'sans-serif',
-                    fontWeight: 'bold',
-                },
+
+const dialogStyles = {
+    '& .MuiDialog-paper': {
+        backgroundColor: 'rgb(244, 133, 49)',
+        color: 'white',
+        borderRadius: '2rem',
+        padding: '2rem',
+        border: '2px solid white',
+        '& .MuiDialogTitle-root': {
+            fontSize: '2rem',
+            textAlign: 'center',
+            '& .MuiTypography-root': {
+                fontFamily: 'sans-serif',
+                fontWeight: 'bold',
             },
-            '& .MuiDialogContent-root': {
+        },
+        '& .MuiDialogContent-root': {
+            fontSize: '1.5rem',
+            textAlign: 'center',
+            '& .MuiDialogContentText-root': {
+                fontFamily: 'sans-serif',
+            },
+        },
+        '& .MuiDialogActions-root': {
+            justifyContent: 'center',
+            '& .MuiButton-root': {
                 fontSize: '1.5rem',
-                textAlign: 'center',
-                '& .MuiDialogContentText-root': {
-                    fontFamily: 'sans-serif',
-                },
-            },
-            '& .MuiDialogActions-root': {
-                justifyContent: 'center',
-                '& .MuiButton-root': {
-                    fontSize: '1.5rem',
-                    fontFamily: 'sans-serif',
-                    color: 'white',
-                    border: '2px solid white',
-                    borderRadius: '2rem',
-                    padding: '1rem 2rem',
-                    margin: '0 0.5rem',
-                    backgroundColor: 'rgb(244, 133, 49)',
-                    '&:hover': {
-                        backgroundColor: 'rgb(244, 133, 49, 0.5)',
-                    },
+                fontFamily: 'sans-serif',
+                color: 'white',
+                border: '2px solid white',
+                borderRadius: '2rem',
+                padding: '1rem 2rem',
+                margin: '0 0.5rem',
+                backgroundColor: 'rgb(244, 133, 49)',
+                '&:hover': {
+                    backgroundColor: 'rgb(244, 133, 49, 0.5)',
                 },
             },
         },
     },
-});
+}
