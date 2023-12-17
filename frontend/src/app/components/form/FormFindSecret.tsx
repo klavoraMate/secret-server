@@ -40,11 +40,11 @@ export default function FormFindSecret({onResponse}: {
                 </Grid>
                 <Grid item xs={12}>
                     <FormControl component="fieldset">
-                        <FormLabel component="legend">Format</FormLabel>
+                        <FormLabel sx={labelStyle} component="legend">Response format</FormLabel>
                         <RadioGroup row aria-label="format" name="row-radio-buttons-group" value={format}
                                     onChange={(e) => setFormat(e.target.value)}>
-                            <FormControlLabel value="application/json" control={<Radio/>} label="JSON"/>
-                            <FormControlLabel value="application/xml" control={<Radio/>} label="XML"/>
+                            <FormControlLabel value="application/json" control={<Radio sx={radioStyle}/>} label="JSON"/>
+                            <FormControlLabel value="application/xml" control={<Radio sx={radioStyle}/>} label="XML"/>
                         </RadioGroup>
                     </FormControl>
                 </Grid>
@@ -54,4 +54,19 @@ export default function FormFindSecret({onResponse}: {
             </FormContainer>
         </div>
     )
+}
+
+const radioStyle = {
+    color: 'pink',
+    '&.Mui-checked': {
+        color: 'pink',
+    }
+}
+
+const labelStyle = {
+    color: 'white',
+    fontWeight: 'bold',
+    '&.Mui-focused': {
+        color: 'pink',
+    }
 }

@@ -14,7 +14,7 @@ const TextFieldStyled = styled(TextField)({
         color: 'white',
         fontFamily: 'monospace',
         fontSize: '1rem',
-        border: '2px solid gray',
+        border: '2px solid white',
         borderRadius: '2rem',
         padding: '0.5rem',
     },
@@ -28,7 +28,7 @@ const TextFieldStyled = styled(TextField)({
     },
     '& .MuiOutlinedInput-root': {
         '& fieldset': {
-            borderColor: 'gray',
+            borderColor: 'white',
         },
         '&:hover fieldset': {
             borderColor: 'pink',
