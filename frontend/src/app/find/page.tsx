@@ -22,21 +22,13 @@ export default function Find() {
         setError(null);
     }
 
-    const handleResponse = (data: JsonResponse | string, error: string | null = null) => {
-        if (typeof data === 'string') {
-            setXmlData(data);
-            setJsonData({} as JsonResponse);
-        } else {
-            setJsonData(data);
-            setXmlData('');
-        }
-        setError(error);
+    const handleResponse = () => {
         setOpen(true);
     }
 
     return (
         <div>
-            <FormFindSecret onResponse={handleResponse}/>
+            <FormFindSecret setJsonData={setJsonData} setXmlData={setXmlData} setError={setError} onResponse={handleResponse}/>
             <DialogContainer open={open} onClose={handleClose} title={error ? 'Error' : 'Your secret is:'}>
                 {error && (
                     <Typography variant="h6" color="error">{error}</Typography>

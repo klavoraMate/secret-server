@@ -5,9 +5,14 @@ import FormButton from "@/app/components/form/FormButton";
 import FormContainer from "@/app/components/form/FormContainer";
 import JsonResponse from "@/app/Types";
 
-export default function FormFindSecret({onResponse}: {
-    onResponse: (data: JsonResponse | string, error?: string | null) => void
-}) {
+interface FormFindSecretProps {
+    setJsonData: (data: JsonResponse) => void;
+    setXmlData: (data: string) => void;
+    setError: (error: string | null) => void;
+    onResponse: () => void;
+}
+
+export default function FormFindSecret({setJsonData, setXmlData, setError,onResponse}: FormFindSecretProps) {
     const [hash, setHash] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
     const [format, setFormat] = useState<string>('application/json');
@@ -19,14 +24,21 @@ export default function FormFindSecret({onResponse}: {
 
             if (res.status === 404) {
                 const data = await res.json();
-                onResponse('', data.message);
+                setError(data.message);
                 setLoading(false);
-            } else {
-                onResponse(format === 'application/json' ? await res.json() : await res.text(), null);
+            } else if (res.status === 410){
+                setError('Secret has been expired!');
+                setLoading(false);
+            }
+            else {
+                if(format === 'application/json')
+                    setJsonData(await res.json());
+                else
+                    setXmlData(await res.text());
                 setLoading(false);
             }
         } catch (error: any) {
-            onResponse('', error.message);
+            setError(error.message);
             setLoading(false);
         }
     };
