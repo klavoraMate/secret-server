@@ -15,7 +15,6 @@ export default function RootLayout({children,}: {children: React.ReactNode }) {
     return (
         <html lang="en">
             <body className={inter.className}>
-            <Image src='/background.jpg' alt={'background'} layout={'fill'} objectFit={'cover'}/>
             <div style={{position: 'relative', zIndex: 1}}>
                 <NavBar/>
                 {children}
