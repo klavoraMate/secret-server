@@ -20,7 +20,7 @@ export default function FormFindSecret({setJsonData, setXmlData, setError, setOp
     const fetchData = async () => {
         setLoading(true);
         try {
-            const res = await fetch('/v1/secret/' + hash, {headers: {Accept: format}});
+            const res = await fetch('/v1/secret' + hash, {headers: {Accept: format}});
 
             if (res.status === 404) {
                 const data = await res.json();
