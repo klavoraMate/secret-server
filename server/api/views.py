@@ -14,13 +14,14 @@ def get_secret(request, hash_value):
     except Secret.DoesNotExist:
         return Response({'message': 'Secret not found'}, status=404)
 
+    secret.remainingViews -= 1
+    
     if secret.expiresAt <= timezone.now():
         return Response({'message': 'Secret expired'}, status=410)
 
     if secret.remainingViews <= 0:
         return Response({'message': 'Secret expired'}, status=410)
 
-    secret.remainingViews -= 1
     secret.save()
     serializer = SecretSerializer(secret)
     return Response(serializer.data, status=200)
