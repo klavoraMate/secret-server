@@ -5,8 +5,7 @@ import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 import {solarizedlight} from 'react-syntax-highlighter/dist/esm/styles/prism';
 import FormFindSecret from '@/app/components/form/FormFindSecret';
 import DialogContainer from "@/app/components/dialog/DialogContainer";
-import XMLViewer from "react-xml-viewer/dist";
-
+import pd from 'pretty-data';
 interface DataProps {
     json: {
         hash: string;
@@ -87,7 +86,9 @@ export default function Find() {
                             </SyntaxHighlighter>
                         </TabPanel>
                         <TabPanel value={tabValue} index={2}>
-                            <XMLViewer xml={data.xml}/>
+                            <SyntaxHighlighter language="xml" style={solarizedlight}>
+                                {pd.pd.xml(data.xml)}
+                            </SyntaxHighlighter>
                         </TabPanel></>
                 )}
             </DialogContainer>
