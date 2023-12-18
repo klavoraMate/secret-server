@@ -5,6 +5,13 @@ import FormButton from "@/app/components/form/FormButton";
 import FormContainer from "@/app/components/form/FormContainer";
 import JsonResponse from "@/app/Types";
 
+/**
+ * @interface FormFindSecretProps
+ * @property {Function} setJsonData - Function to be called when the JSON data is fetched.
+ * @property {Function} setXmlData - Function to be called when the XML data is fetched.
+ * @property {Function} setError - Function to be called when an error occurs.
+ * @property {Function} setOpen - Function to be called to open or close the dialog.
+ */
 interface FormFindSecretProps {
     setJsonData: (data: JsonResponse) => void;
     setXmlData: (data: string) => void;
@@ -12,11 +19,21 @@ interface FormFindSecretProps {
     setOpen: (open: boolean) => void;
 }
 
+/**
+ * FormFindSecret is a component that renders a form for finding a secret.
+ * @param {FormFindSecretProps} props - The properties that define the form's behavior.
+ * @returns {JSX.Element} The FormFindSecret component.
+ */
 export default function FormFindSecret({setJsonData, setXmlData, setError, setOpen}: FormFindSecretProps) {
     const [hash, setHash] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
     const [format, setFormat] = useState<string>('application/json');
 
+    /**
+     * Fetches the secret data from the server. Based on the format state, the response data is either JSON or XML.
+     * Sends a GET request to the '/v1/secret/' endpoint with the hash of the secret.
+     * Calls the appropriate prop function with the response data.
+     */
     const fetchData = async () => {
         setLoading(true);
         try {
@@ -65,6 +82,10 @@ export default function FormFindSecret({setJsonData, setXmlData, setError, setOp
     )
 }
 
+/**
+ * The styles for the Radio component in the FormFindSecret component.
+ * @type {Object}
+ */
 const radioStyle = {
     color: 'pink',
     '&.Mui-checked': {
@@ -72,6 +93,10 @@ const radioStyle = {
     }
 }
 
+/**
+ * The styles for the FormLabel component in the FormFindSecret component.
+ * @type {Object}
+ */
 const labelStyle = {
     color: 'white',
     fontWeight: 'bold',
