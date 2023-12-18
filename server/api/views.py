@@ -28,7 +28,7 @@ def get_secret(request, hash_value):
     if secret.expires_at <= timezone.now():
         return Response({'message': 'Secret expired'}, status=410)
 
-    if secret.remaining_views <= 0:
+    if secret.remaining_views < 0:
         return Response({'message': 'Secret expired'}, status=410)
 
     secret.save()
