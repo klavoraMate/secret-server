@@ -39,7 +39,7 @@ class SecretCreateSerializer(serializers.Serializer):
         Secret: The created Secret instance.
         """
         return Secret.create_secret(
-            secret=validated_data.pop('secret'),
+            secret=validated_data.pop('secretText'),
             expire_after_views=validated_data.pop('expireAfterViews'),
             expire_after=validated_data.pop('expireAfter')
         )
