@@ -1,5 +1,13 @@
 import {Button, Dialog, DialogActions, DialogTitle} from "@mui/material";
 
+/**
+ * DialogContainerProps
+ * @interface
+ * @property {boolean} open - Indicates whether the dialog is open or not.
+ * @property {Function} onClose - Function to be called when the dialog needs to be closed.
+ * @property {string} title - The title of the dialog.
+ * @property {React.ReactNode} children - The content of the dialog.
+ */
 interface DialogContainerProps {
     open: boolean;
     onClose: () => void;
@@ -7,6 +15,11 @@ interface DialogContainerProps {
     children: React.ReactNode;
 }
 
+/**
+ * DialogContainer is a component that renders a dialog with a title, content, and a close button.
+ * @param {DialogContainerProps} props - The properties that define the dialog's behavior and content.
+ * @returns {JSX.Element} The DialogContainer component.
+ */
 export default function DialogContainer({open, onClose, title, children}: DialogContainerProps) {
 
     return (
@@ -22,6 +35,10 @@ export default function DialogContainer({open, onClose, title, children}: Dialog
     );
 }
 
+/**
+ * The styles for the DialogContainer component.
+ * @type {Object}
+ */
 const dialogStyles = {
     '& .MuiDialog-paper': {
         backgroundColor: 'rgb(244, 133, 49)',
