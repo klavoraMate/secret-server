@@ -1,7 +1,7 @@
 'use client';
 import {Box} from "@mui/system";
 import {AppBar, Toolbar} from "@mui/material";
-import NavigationButton from "@/app/components/NavigationButton";
+import NavigationButton from "@/app/components/navigation/NavigationButton";
 
 export default function NavBar() {
     return (
