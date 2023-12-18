@@ -40,6 +40,6 @@ class SecretCreateSerializer(serializers.Serializer):
         """
         return Secret.create_secret(
             secret=validated_data.pop('secret'),
-            expireAfterViews=validated_data.pop('expireAfterViews'),
-            expireAfter=validated_data.pop('expireAfter')
+            expire_after_views=validated_data.pop('expireAfterViews'),
+            expire_after=validated_data.pop('expireAfter')
         )
