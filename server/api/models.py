@@ -1,5 +1,6 @@
 from django.db import models
-from datetime import datetime, timedelta
+from datetime import timedelta
+from django.utils import timezone
 from .fields import EncryptedField
 import hashlib
 
@@ -33,7 +34,7 @@ class Secret(models.Model):
         Returns:
         Secret: A new Secret object.
         """
-        created_at = datetime.now()
+        created_at = timezone.now()
         expires_at = created_at + timedelta(minutes=expire_after)
 
         hash_input = secret + str(expire_after_views) + str(expires_at) + str(created_at)
