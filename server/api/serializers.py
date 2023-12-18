@@ -7,12 +7,17 @@ class SecretSerializer(serializers.ModelSerializer):
 
     It inherits from the ModelSerializer class provided by Django Rest Framework.
 
-    The Meta class within defines the model to be serialized and the fields to be included in the serialized representation.
+    The Meta class within defines the model to be serialized and
+    the fields to be included in the serialized representation.
     """
+    secretText = serializers.CharField(source='secret_text')
+    createdAt = serializers.DateTimeField(source='created_at')
+    expiresAt = serializers.DateTimeField(source='expires_at')
+    remainingViews = serializers.IntegerField(source='remaining_views')
 
     class Meta:
         model = Secret
-        fields = ['hash', 'secret_text', 'created_at', 'expires_at', 'remaining_views']
+        fields = ['hash',  'secretText', 'createdAt', 'expiresAt', 'remainingViews']
 
 
 class SecretCreateSerializer(serializers.Serializer):
@@ -39,7 +44,7 @@ class SecretCreateSerializer(serializers.Serializer):
         Secret: The created Secret instance.
         """
         return Secret.create_secret(
-            secret=validated_data.pop('secretText'),
+            secret=validated_data.pop('secret'),
             expire_after_views=validated_data.pop('expireAfterViews'),
             expire_after=validated_data.pop('expireAfter')
         )
