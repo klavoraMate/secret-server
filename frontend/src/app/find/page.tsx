@@ -28,13 +28,6 @@ export default function Find() {
         setError(null);
     }
 
-    /**
-     * Opens the dialog.
-     */
-    const handleResponse = () => {
-        setOpen(true);
-    }
-
     return (
         <div>
             <FormFindSecret setJsonData={setJsonData} setXmlData={setXmlData} setError={setError} setOpen={setOpen}/>
