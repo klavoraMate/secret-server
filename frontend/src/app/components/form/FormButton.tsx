@@ -1,11 +1,22 @@
 import Button from "@mui/material/Button";
 
+/**
+ * @interface FormButtonProps
+ * @property {string} text - The text to be displayed on the button.
+ * @property {Function} onClick - Function to be called when the button is clicked.
+ * @property {boolean} disabled - Indicates whether the button is disabled or not.
+ */
 interface FormButtonProps {
     text: string;
     onClick: () => void;
     disabled: boolean;
 }
 
+/**
+ * FormButton is a component that renders a button with custom styles.
+ * @param {FormButtonProps} props - The properties that define the button's behavior and appearance.
+ * @returns {JSX.Element} The FormButton component.
+ */
 export default function FormButton({text, onClick, disabled}: FormButtonProps) {
     return (
         <div>
@@ -14,9 +25,12 @@ export default function FormButton({text, onClick, disabled}: FormButtonProps) {
             </Button>
         </div>
     );
-
 }
 
+/**
+ * The styles for the FormButton component.
+ * @type {Object}
+ */
 const buttonStyles = {
     fontSize: '1.5rem',
     color: 'white',
