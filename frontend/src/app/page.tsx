@@ -31,4 +31,5 @@ const rootStyles = {
 const titleStyles = {
     fontSize: '3rem',
     fontWeight: 'bold',
+    color: 'white',
 }
