@@ -40,8 +40,13 @@ export default function FormFindSecret({setJsonData, setXmlData, setError, setOp
             const res = await fetch('/v1/secret/' + hash, {headers: {Accept: format}});
 
             if (res.status === 404) {
-                const data = await res.json();
-                setError(data.message);
+                if (format === 'application/json'){
+                    const data = await res.json();
+                    setError(data.message);
+                }else {
+                    const data = await res.text();
+                    setError(data);
+                }
             } else if (res.status === 410) {
                 setError('Secret has been expired!');
             } else {
